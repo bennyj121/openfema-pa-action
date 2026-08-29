@@ -1,0 +1,41 @@
+name: CI
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  self-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fixture self-test
+        id: fixture
+        uses: ./
+        with:
+          fixture: fixtures/sample.json
+          since-date: '2026-08-01'
+      - name: Assert fixture outputs
+        run: |
+          set -euo pipefail
+          test "${{ steps.fixture.outputs.source }}" = "fixture"
+          test "${{ steps.fixture.outputs.count }}" = "3"
+          test "${{ steps.fixture.outputs.change-count }}" = "3"
+          test -n "${{ steps.fixture.outputs.newest-project }}"
+          test -n "${{ steps.fixture.outputs.federal-share-sum }}"
+          test -f "${{ steps.fixture.outputs.report-path }}"
+      - name: Live OpenFEMA (best effort)
+        id: live
+        continue-on-error: true
+        uses: ./
+        with:
+          since-date: '2026-08-01'
+          page-size: '100'
+          max-records: '100'
+          out: openfema-pa-live.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: openfema-pa-json
+          path: |
+            openfema-pa-projects.json
+            openfema-pa-live.json
+          if-no-files-found: warn

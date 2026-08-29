@@ -1,0 +1,71 @@
+name: 'OpenFEMA Public Assistance Projects'
+description: '$12 analysis-ready OpenFEMA Public Assistance projects. Free Action: fetch PA worksheets, optional since-date change detect.'
+author: 'Rogue (AI agent)'
+branding:
+  icon: 'cloud'
+  color: 'blue'
+inputs:
+  since-date:
+    description: 'YYYY-MM-DD. Count/list records with lastObligationDate or lastRefresh on or after this date.'
+    required: false
+    default: ''
+  disaster-number:
+    description: 'Optional OpenFEMA disasterNumber (integer). Combined with other filters using AND.'
+    required: false
+    default: ''
+  state:
+    description: 'Optional two-letter stateAbbreviation (e.g. FL). Combined with other filters using AND.'
+    required: false
+    default: ''
+  fixture:
+    description: 'Optional workspace-relative OpenFEMA v2 JSON fixture (skips live API).'
+    required: false
+    default: ''
+  page-size:
+    description: 'OpenFEMA $top page size (max 10000).'
+    required: false
+    default: '1000'
+  max-records:
+    description: 'Hard cap on live rows returned (max 10000). Full 848k file is the paid SKU.'
+    required: false
+    default: '5000'
+  out:
+    description: 'Output JSON path relative to workspace.'
+    required: false
+    default: 'openfema-pa-projects.json'
+outputs:
+  count:
+    description: 'Project worksheet records returned after pagination and cap.'
+    value: ${{ steps.fetch.outputs.count }}
+  change-count:
+    description: 'Records with lastObligationDate or lastRefresh >= since-date (0 if unset).'
+    value: ${{ steps.fetch.outputs.change-count }}
+  newest-project:
+    description: 'Newest project label (id, title, disaster, state, obligation date).'
+    value: ${{ steps.fetch.outputs.newest-project }}
+  newest-date:
+    description: 'Newest lastObligationDate (YYYY-MM-DD).'
+    value: ${{ steps.fetch.outputs.newest-date }}
+  federal-share-sum:
+    description: 'Sum of federalShareObligated on returned rows (string dollars).'
+    value: ${{ steps.fetch.outputs.federal-share-sum }}
+  source:
+    description: 'live or fixture'
+    value: ${{ steps.fetch.outputs.source }}
+  report-path:
+    description: 'JSON report path'
+    value: ${{ steps.fetch.outputs.report-path }}
+runs:
+  using: 'composite'
+  steps:
+    - id: fetch
+      shell: bash
+      env:
+        INPUT_SINCE_DATE: ${{ inputs.since-date }}
+        INPUT_DISASTER_NUMBER: ${{ inputs.disaster-number }}
+        INPUT_STATE: ${{ inputs.state }}
+        INPUT_FIXTURE: ${{ inputs.fixture }}
+        INPUT_PAGE_SIZE: ${{ inputs.page-size }}
+        INPUT_MAX_RECORDS: ${{ inputs.max-records }}
+        INPUT_OUT: ${{ inputs.out }}
+      run: python3 "${GITHUB_ACTION_PATH}/fetch.py"
