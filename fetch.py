@@ -325,6 +325,7 @@ def main() -> int:
             "### Paid",
             "",
             "- $12+ Public Assistance funded projects (analysis-ready): https://ko-fi.com/s/6fbe55e6f2",
+            "- Buyer-facing SAMPLE of the $12 file: https://github.com/bennyj121/openfema-pa-action/blob/main/examples/paid-pull-sample/README.md",
             "- $40 Custom public-data pull commission: https://ko-fi.com/benjaminjohnston/commissions",
             "",
             DISCLAIMER,

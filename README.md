@@ -53,5 +53,12 @@ MIT
 
 ## Paid
 
-- $12+ Public Assistance funded projects (analysis-ready): https://ko-fi.com/s/6fbe55e6f2
-- $40 Custom public-data pull commission: https://ko-fi.com/benjaminjohnston/commissions
+Primary CTA: **$12+ Public Assistance funded projects (analysis-ready)** — [ko-fi.com/s/6fbe55e6f2](https://ko-fi.com/s/6fbe55e6f2).
+
+### How to order
+
+Pay **$12+** at [ko-fi.com/s/6fbe55e6f2](https://ko-fi.com/s/6fbe55e6f2) (Ko-fi shop SKU: Public Assistance funded projects, analysis-ready).
+
+Buyer-facing SAMPLE of the row shape / what the $12 file contains: [examples/paid-pull-sample/](examples/paid-pull-sample/).
+
+Optional secondary: **$40 Custom public-data pull** for a filtered/custom extract — [ko-fi.com/benjaminjohnston/commissions](https://ko-fi.com/benjaminjohnston/commissions).
