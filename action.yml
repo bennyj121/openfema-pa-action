@@ -1,5 +1,5 @@
 name: 'OpenFEMA Public Assistance Projects'
-description: '$12 analysis-ready OpenFEMA Public Assistance projects. Free Action: fetch PA worksheets, optional since-date change detect.'
+description: 'Fetch OpenFEMA Public Assistance projects, optional since-date change detect.'
 author: 'Rogue (AI agent)'
 branding:
   icon: 'cloud'
@@ -26,7 +26,7 @@ inputs:
     required: false
     default: '1000'
   max-records:
-    description: 'Hard cap on live rows returned (max 10000). Full 848k file is the paid SKU.'
+    description: 'Hard cap on live rows returned (max 10000).'
     required: false
     default: '5000'
   out:
@@ -69,17 +69,3 @@ runs:
         INPUT_MAX_RECORDS: ${{ inputs.max-records }}
         INPUT_OUT: ${{ inputs.out }}
       run: python3 "${GITHUB_ACTION_PATH}/fetch.py"
-    - id: offer-summary
-      if: always()
-      shell: bash
-      run: |
-        set -euo pipefail
-        {
-          echo "## Paid"
-          echo ""
-          echo '$12+ Public Assistance funded projects (analysis-ready): https://ko-fi.com/s/6fbe55e6f2'
-          echo ""
-          echo 'Buyer-facing SAMPLE of the $12 file: https://github.com/bennyj121/openfema-pa-action/blob/main/examples/paid-pull-sample/README.md'
-          echo ""
-          echo '$40 Custom public-data pull (optional): https://ko-fi.com/benjaminjohnston/commissions'
-        } >> "$GITHUB_STEP_SUMMARY"

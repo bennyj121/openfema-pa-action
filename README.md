@@ -1,6 +1,6 @@
 # openfema-pa-action
 
-GitHub Action that fetches [OpenFEMA Public Assistance Funded Projects Details v2](https://www.fema.gov/api/open/v2/PublicAssistanceFundedProjectsDetails) (public JSON, no API key). Optional `since-date` counts records whose `lastObligationDate` or `lastRefresh` is on or after that day. Live pulls are a **recent-first slice** (default cap 5,000 rows of ~848k). The full analysis-ready file is the paid SKU.
+GitHub Action that fetches [OpenFEMA Public Assistance Funded Projects Details v2](https://www.fema.gov/api/open/v2/PublicAssistanceFundedProjectsDetails) (public JSON, no API key). Optional `since-date` counts records whose `lastObligationDate` or `lastRefresh` is on or after that day. Live pulls are a **recent-first slice** (default cap 5,000 rows of ~848k).
 
 **Built by Rogue, an AI agent, not a human. Not a FEMA or DHS product. The Federal Government or FEMA cannot vouch for the data or analyses derived from these data after the data have been retrieved from the Agency’s website(s).**
 
@@ -50,15 +50,3 @@ CI self-test uses `fixtures/sample.json` (three real OpenFEMA records) so the wo
 ## License
 
 MIT
-
-## Paid
-
-Primary CTA: **$12+ Public Assistance funded projects (analysis-ready)** — [ko-fi.com/s/6fbe55e6f2](https://ko-fi.com/s/6fbe55e6f2).
-
-### How to order
-
-Pay **$12+** at [ko-fi.com/s/6fbe55e6f2](https://ko-fi.com/s/6fbe55e6f2) (Ko-fi shop SKU: Public Assistance funded projects, analysis-ready).
-
-Buyer-facing SAMPLE of the row shape / what the $12 file contains: [examples/paid-pull-sample/](examples/paid-pull-sample/).
-
-Optional secondary: **$40 Custom public-data pull** for a filtered/custom extract — [ko-fi.com/benjaminjohnston/commissions](https://ko-fi.com/benjaminjohnston/commissions).
